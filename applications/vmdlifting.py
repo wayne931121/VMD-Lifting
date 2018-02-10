@@ -21,6 +21,7 @@ import cv2
 import matplotlib.pyplot as plt
 from os.path import dirname, realpath
 from pos2vmd import pos2vmd
+from head_face import head_face_estimation
 
 DIR_PATH = dirname(realpath(__file__))
 PROJECT_PATH = realpath(DIR_PATH + '/..')
@@ -55,7 +56,9 @@ def vmdlifting(image_file, vmd_file, position_file):
                 print(j, pose[0, j], pose[1, j], pose[2, j], file=fout)
         fout.close()
 
-    pos2vmd(pose_3d, vmd_file)
+    # head position & face expression
+    head_rotation, expression_frames = head_face_estimation(image_file_path)
+    pos2vmd(pose_3d, vmd_file, head_rotation, expression_frames)
 
     # Show 2D and 3D poses
     # display_results(image, pose_2d, visibility, pose_3d)

@@ -13,7 +13,7 @@ import re
 from PyQt5.QtGui import QQuaternion, QVector3D
 from VmdWriter import VmdBoneFrame, VmdInfoIk, VmdShowIkFrame, VmdWriter
 
-def positions_to_frames(pos):
+def positions_to_frames(pos, head_rotation=None):
     """convert positions to bone frames"""
     frames = []
     # 上半身
@@ -38,29 +38,22 @@ def positions_to_frames(pos):
     lower_body_rotation = bf.rotation
     frames.append(bf)
 
-    # 首
-    bf = VmdBoneFrame()
-    bf.name = b'\x8e\xf1' # '首'
-    direction = pos[9] - pos[8]
-    up = QVector3D.crossProduct((pos[9] - pos[8]), (pos[10] - pos[9]))
-    orientation = QQuaternion.fromDirection(direction, up)
-    initial_orientation = QQuaternion.fromDirection(QVector3D(0, 0.2, -1), QVector3D(1, 0, 0))
-    rotation = orientation * initial_orientation.inverted()
-    bf.rotation = upper_body_rotation.inverted() * rotation
-    neck_rotation = bf.rotation
-    frames.append(bf)
-    
+    # 首は回転させず、頭のみ回転させる
     # 頭
     bf = VmdBoneFrame()
     bf.name = b'\x93\xaa' # '頭'
-    direction = pos[10] - pos[9]
-    up = QVector3D.crossProduct((pos[9] - pos[8]), (pos[10] - pos[9]))
-    orientation = QQuaternion.fromDirection(direction, up)
-    initial_orientation = QQuaternion.fromDirection(QVector3D(0, 1, 0), QVector3D(1, 0, 0))
-    rotation = orientation * initial_orientation.inverted()
-    bf.rotation = neck_rotation.inverted() * upper_body_rotation.inverted() * rotation
+    if head_rotation is None:
+        # direction = pos[10] - pos[9]
+        direction = pos[10] - pos[8]
+        up = QVector3D.crossProduct((pos[9] - pos[8]), (pos[10] - pos[9]))
+        orientation = QQuaternion.fromDirection(direction, up)
+        initial_orientation = QQuaternion.fromDirection(QVector3D(0, 1, 0), QVector3D(1, 0, 0))
+        rotation = orientation * initial_orientation.inverted()
+        bf.rotation = upper_body_rotation.inverted() * rotation
+    else:
+        bf.rotation = upper_body_rotation.inverted() * head_rotation
     frames.append(bf)
-
+        
     # 左腕
     bf = VmdBoneFrame()
     bf.name = b'\x8d\xb6\x98\x72' # '左腕'
@@ -197,17 +190,18 @@ def convert_position(pose_3d):
             positions.append(q)
     return positions
     
-def position_list_to_vmd(positions, vmd_file):
+def position_list_to_vmd(positions, vmd_file, head_rotation=None, expression_frames=None):
     bone_frames = []
-    bf = positions_to_frames(positions)
+    bf = positions_to_frames(positions, head_rotation)
     bone_frames.extend(bf)
     showik_frames = make_showik_frames()
     writer = VmdWriter()
+    # writer.write_vmd_file(vmd_file, bone_frames, showik_frames, expression_frames)
     writer.write_vmd_file(vmd_file, bone_frames, showik_frames)
 
-def pos2vmd(pose_3d, vmd_file):
+def pos2vmd(pose_3d, vmd_file, head_rotation=None, expression_frames=None):
     positions = convert_position(pose_3d)
-    position_list_to_vmd(positions, vmd_file)
+    position_list_to_vmd(positions, vmd_file, head_rotation, expression_frames)
     
 def position_file_to_vmd(position_file, vmd_file):
     positions = read_positions(position_file)
