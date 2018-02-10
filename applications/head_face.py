@@ -19,16 +19,21 @@ DEFAULT_PREDICTOR_PATH = 'predictor/shape_predictor_68_face_landmarks.dat'
 import cv2
 import dlib
 import numpy as np
+import os
 from skimage import io
 from PyQt5.QtGui import QQuaternion, QVector3D, QMatrix3x3
 
 # dlib の python_examples/face_landmark_detection.py を改造
 def face_landmark_detection(image_path, predictor_path):
+    shape_list = []
     image = io.imread(image_path)
+    if not os.path.exists(predictor_path):
+        print("A trained model for face landmark detection is not found.")
+        print("You can get the trained model from http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2")
+        return shape_list
     predictor = dlib.shape_predictor(predictor_path)
     detector = dlib.get_frontal_face_detector()
     dets = detector(image, 1)
-    shape_list = []
     print("Number of faces detected: {}".format(len(dets)))
     for k, d in enumerate(dets):
         print("Detection {}: Left: {} Top: {} Right: {} Bottom: {}".format(
