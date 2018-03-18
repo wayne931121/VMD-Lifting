@@ -93,10 +93,14 @@ cd application
 Lifting from the Deep 畳み込みニューラルネットワーク(CNN)を用いて、単一のRGB画像から3Dのポーズ推定を行う
 手法(の論文)および、それを実装したプログラムです。
 著者は Denis Tome', Chris Russell and Lourdes Agapito です。
-詳しくはプロジェクトのWebページ(http://visual.cs.ucl.ac.uk/pubs/liftingFromTheDeep/)の論文や動画を参照してください。
+詳しくはプロジェクトのWebページ( http://visual.cs.ucl.ac.uk/pubs/liftingFromTheDeep/ )の論文や動画を参照してください。
 
 ## ライセンスについて
 (はじめに英語で書いたとおり)GNU GPLv3 licenseです。詳しくはLICENSEファイルを読んでください。
 なお、顔の向きを推定するのに使う学習済みモデル shape_predictor_68_face_landmarks.dat は、
 学習に用いられた iBUG 300-W データセットが商用利用を許可されていません。
 もし商用利用する場合は Imperial College London に許諾を得るか、別の学習済みモデルを用意してください。
+
+## 参考文献
+
+D. Tome, C. Russell and L. Agapito. Lifting from the Deep: Convolutional 3D Pose Estimation from a Single Image. In IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2017
