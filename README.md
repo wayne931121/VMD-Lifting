@@ -5,7 +5,8 @@ The authers of 'Lifting from the Deep' are Denis Tome', Chris Russell and Lourde
 Please refer 'README-original.md' and http://visual.cs.ucl.ac.uk/pubs/liftingFromTheDeep/
 for more information about the original 'Lifting from the Deep'.
 
-This project is licensed under the terms of the GNU GPLv3 license. By using the software, you are agreeing to the terms of the license agreement (see LICENSE file).
+This project is licensed under the terms of the GNU GPLv3 license. By using the software,
+you are agreeing to the terms of the license agreement (see LICENSE file).
 
 Note: 'shape_predictor_68_face_landmarks.dat', the default trained model for head pose estimation,
 was trained on the iBUG 300-W face landmark dataset. And the license for the iBUG 300-W dataset
@@ -65,7 +66,9 @@ Windowsの場合は次の手順で必要なものをインストールします�
 - まず setup.sh を実行します。このスクリプトは必要なデータを取得し、外部ユーティリティをインストールします。
 - (次に、Lifting from the Deep 本体の動作を確認したい場合は、application ディレクトリで demo.py を実行します。)
 
-- dlib + OpenCVによるHead Pose Estimation(頭部姿勢推定)を行う場合は、http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2 をダウンロードし、展開してできたファイル shape_predictor_68_face_landmarks.dat を applications/predictor/ に置きます。
+- dlib + OpenCVによるHead Pose Estimation(頭部姿勢推定)を行う場合は、
+http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2 をダウンロードし、
+展開してできたファイル shape_predictor_68_face_landmarks.dat を applications/predictor/ に置きます。
 
 ```
 $ mkdir applications/predictor
@@ -90,10 +93,11 @@ cd application
 
 ## Lifting from the Deep について
 
-Lifting from the Deep 畳み込みニューラルネットワーク(CNN)を用いて、単一のRGB画像から3Dのポーズ推定を行う
-手法(の論文)および、それを実装したプログラムです。
-著者は Denis Tome', Chris Russell and Lourdes Agapito です。
-詳しくはプロジェクトのWebページ( http://visual.cs.ucl.ac.uk/pubs/liftingFromTheDeep/ )の論文や動画を参照してください。
+Lifting from the Deep は、畳み込みニューラルネットワーク(CNN)を用いて、
+単一のRGB画像から3Dのポーズ推定を行う手法(の論文)および、それを実装したプログラムです。
+著者は Denis Tome', Chris Russell, Lourdes Agapito です。
+詳しくはプロジェクトのWebページ ( http://visual.cs.ucl.ac.uk/pubs/liftingFromTheDeep/ )
+の論文や動画を参照してください。
 
 ## ライセンスについて
 (はじめに英語で書いたとおり)GNU GPLv3 licenseです。詳しくはLICENSEファイルを読んでください。
@@ -103,4 +107,5 @@ Lifting from the Deep 畳み込みニューラルネットワーク(CNN)を用�
 
 ## 参考文献
 
-D. Tome, C. Russell and L. Agapito. Lifting from the Deep: Convolutional 3D Pose Estimation from a Single Image. In IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2017
+D. Tome, C. Russell and L. Agapito. Lifting from the Deep: Convolutional 3D Pose Estimation
+from a Single Image. In IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2017
