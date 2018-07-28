@@ -84,7 +84,7 @@ cd application
 
 ./vmdlifting.py IMAGE_FILE VMD_FILE [POSITION_FILE]
 
-- IMAGE_FILE: 入力元画像ファイル(JPEG, PNGなど)
+- IMAGE_FILE: 入力元画像/動画ファイル(JPEG, PNG, MP4など)
 - VMD_FILE: 出力先VMDファイル
 - POSITION_FILE(オプション): 関節の位置を出力するテキストファイル。デバッグ用。
 

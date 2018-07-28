@@ -24,9 +24,8 @@ from skimage import io
 from PyQt5.QtGui import QQuaternion, QVector3D, QMatrix3x3
 
 # dlib の python_examples/face_landmark_detection.py を改造
-def face_landmark_detection(image_path, predictor_path):
+def face_landmark_detection(image, predictor_path):
     shape_list = []
-    image = io.imread(image_path)
     if not os.path.exists(predictor_path):
         print("A trained model for face landmark detection is not found.")
         print("You can get the trained model from http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2")
@@ -52,8 +51,7 @@ def face_landmark_detection(image_path, predictor_path):
     # dlib.hit_enter_to_continue()
     return shape_list
 
-def head_pose_estimation(image_path, shape):
-    image = cv2.imread(image_path)
+def head_pose_estimation(image, shape):
     pos2d_array = []
     for k in [30, 8, 45, 36, 54, 48]:
         pos2d_array.append((shape.part(k).x, shape.part(k).y))
@@ -87,19 +85,14 @@ def head_pose_estimation(image_path, shape):
     return head_rotation
 
 
-def make_expression_frames(shape):
-    return None
-
-
-def head_face_estimation(image_path, predictor_path=None):
+def head_estimation(image, predictor_path=None):
     if predictor_path is None:
         predictor_path = DEFAULT_PREDICTOR_PATH
-    shape_list = face_landmark_detection(image_path, predictor_path)
+    shape_list = face_landmark_detection(image, predictor_path)
     if len(shape_list) == 0:
-        return None, None
-    head_rotation = head_pose_estimation(image_path, shape_list[0])
-    expression_frames = make_expression_frames(shape_list[0])
-    return head_rotation, expression_frames
+        return None
+    head_rotation = head_pose_estimation(image, shape_list[0])
+    return head_rotation
 
 
 if __name__ == '__main__':
@@ -107,5 +100,6 @@ if __name__ == '__main__':
     if (len(sys.argv) < 2):
         usage(sys.argv[0])
 
-    head_rotation, expression_frames = head_face_estimation(sys.argv[1])
+    image = cv2.imread(sys.argv[1])
+    head_rotation, expression_frames = head_face_estimation(image)
 

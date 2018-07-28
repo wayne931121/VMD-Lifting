@@ -14,4 +14,5 @@ __pycache__/
 saved_sessions/
 applications/predictor/
 applications/testdata/
+applications/debug/
 output/

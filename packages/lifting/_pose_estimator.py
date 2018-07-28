@@ -137,11 +137,14 @@ class PoseEstimator(PoseEstimatorInterface):
         estimated_2d_pose, visibility = utils.detect_parts_from_likelihoods(pred_2d_pose,
                                                                             centers,
                                                                             pred_likelihood)
-
+        
         # Estimate 3D poses
         transformed_pose2d, weights = self.poseLifting.transform_joints(
             estimated_2d_pose.copy(), visibility)
-        pose_3d = self.poseLifting.compute_3d(transformed_pose2d, weights)
+        if len(estimated_2d_pose) > 0:
+            pose_3d = self.poseLifting.compute_3d(transformed_pose2d, weights)
+        else:
+            pose_3d = None
         pose_2d = np.round(estimated_2d_pose / self.scale).astype(np.int32)
 
         return pose_2d, visibility, pose_3d

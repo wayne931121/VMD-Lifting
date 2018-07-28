@@ -8,7 +8,7 @@
 from __future__ import print_function
 
 def usage(prog):
-    print('usage: ' + prog + ' IMAGE_FILE VMD_FILE [POSITION_FILE]')
+    print('usage: ' + prog + ' IMAGE_FILE VMD_FILE')
     sys.exit()
 
 import __init__
@@ -20,8 +20,13 @@ from lifting.utils import plot_pose
 import cv2
 import matplotlib.pyplot as plt
 from os.path import dirname, realpath
-from pos2vmd import pos2vmd
-from head_face import head_face_estimation
+from pos2vmd import positions_to_frames, make_showik_frames, convert_position
+from head_face import head_estimation
+from VmdWriter import VmdWriter
+from refine_position import refine_position
+from adjust_center import adjust_center
+from dump_positions import dump_positions
+import argparse;
 
 DIR_PATH = dirname(realpath(__file__))
 PROJECT_PATH = realpath(DIR_PATH + '/..')
@@ -29,40 +34,70 @@ SAVED_SESSIONS_DIR = PROJECT_PATH + '/data/saved_sessions'
 SESSION_PATH = SAVED_SESSIONS_DIR + '/init_session/init'
 PROB_MODEL_PATH = SAVED_SESSIONS_DIR + '/prob_model/prob_model_params.mat'
 
-def vmdlifting(image_file, vmd_file, position_file):
-    image_file_path = realpath(DIR_PATH) + '/' + image_file
-    image = cv2.imread(image_file_path)
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)  # conversion to rgb
+def vmdlifting(image_file, vmd_file, center_enabled=False):
+    image_file_path = realpath(image_file)
+    cap = cv2.VideoCapture(image_file_path)
+    initialized = False
+    positions_list = []
+    head_rotation_list = []
+    frame_num = 0
+    print("pose estimation start")
+    while (cap.isOpened()):
+        ret, image = cap.read()
+        if not ret:
+            break
+        
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)  # conversion to rgb
+        #debug_img = "debug/" + str(frame_num) + ".png"
+        #cv2.imwrite(debug_img, image)
 
-    # create pose estimator
-    image_size = image.shape
+        # create pose estimator
+        image_size = image.shape
 
-    pose_estimator = PoseEstimator(image_size, SESSION_PATH, PROB_MODEL_PATH)
+        if not initialized:
+            pose_estimator = PoseEstimator(image_size, SESSION_PATH, PROB_MODEL_PATH)
+            # load model
+            pose_estimator.initialise()
+            initialized = True
+            
+        # pose estimation
+        pose_2d, visibility, pose_3d = pose_estimator.estimate(image)
 
-    # load model
-    pose_estimator.initialise()
-
-    # estimation
-    pose_2d, visibility, pose_3d = pose_estimator.estimate(image)
-
+        if pose_2d is None or visibility is None or pose_3d is None:
+            frame_num += 1
+            continue
+    
+        dump_positions(pose_2d, visibility, pose_3d)
+        positions = convert_position(pose_3d)
+        #print(positions)
+        adjust_center(pose_2d, positions, image)
+        #print(positions)
+        positions_list.append(positions)
+        # head estimation
+        #head_rotation = head_estimation(image)
+        #head_rotation_list.append(head_rotation)
+        print("frame_num: ", frame_num)
+        frame_num += 1
+        
     # close model
     pose_estimator.close()
 
-    if (position_file is not None):
-        # dump 3d joint position data to position_file
-        fout = open(position_file, "w")
-        for pose in pose_3d:
-            for j in range(pose.shape[1]):
-                print(j, pose[0, j], pose[1, j], pose[2, j], file=fout)
-        fout.close()
+    refine_position(positions_list)
+    
+    bone_frames = []
+    frame_num = 0
+    for positions in positions_list:
+        if positions is None:
+            frame_num += 1
+            continue
+        bf = positions_to_frames(positions, frame_num, center_enabled)
+        bone_frames.extend(bf)
+        frame_num += 1
 
-    # head position & face expression
-    head_rotation, expression_frames = head_face_estimation(image_file_path)
-    pos2vmd(pose_3d, vmd_file, head_rotation, expression_frames)
-
-    # Show 2D and 3D poses
-    # display_results(image, pose_2d, visibility, pose_3d)
-
+    showik_frames = make_showik_frames()
+    writer = VmdWriter()
+    writer.write_vmd_file(vmd_file, bone_frames, showik_frames)
+    
 
 def display_results(in_image, data_2d, joint_visibility, data_3d):
     """Plot 2D and 3D poses for each of the people in the image."""
@@ -78,15 +113,12 @@ def display_results(in_image, data_2d, joint_visibility, data_3d):
 
     plt.show()
 
+   
 if __name__ == '__main__':
-    import sys
-    if (len(sys.argv) < 3):
-        usage(sys.argv[0])
-        
-    image_file = sys.argv[1]
-    vmd_file = sys.argv[2]
-    dump_file = None
-    if (len(sys.argv) >3 ):
-        dump_file = sys.argv[3]
-
-    vmdlifting(image_file, vmd_file, dump_file)
+    parser = argparse.ArgumentParser(description='estimate 3D pose and generate VMD motion')
+    parser.add_argument('--center', action='store_true', help='move center bone (experimental)')
+    parser.add_argument('IMAGE_FILE')
+    parser.add_argument('VMD_FILE')
+    
+    arg = parser.parse_args()
+    vmdlifting(arg.IMAGE_FILE, arg.VMD_FILE, arg.center)
