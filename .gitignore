@@ -11,7 +11,7 @@ GPATH
 build/
 __pycache__/
 
-# folders
 saved_sessions/
 applications/predictor/
 applications/testdata/
+output/
