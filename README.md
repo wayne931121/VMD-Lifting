@@ -35,6 +35,7 @@ Ubuntu や Debian GNU/Linux の環境では、rootになって下記のコマン
 # apt-get install python-opencv
 # apt-get install python-tk
 # apt-get install python-pyqt5
+# apt-get install cmake
 # pip install dlib
 ```
 
