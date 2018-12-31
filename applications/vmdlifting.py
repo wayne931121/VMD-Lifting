@@ -40,6 +40,7 @@ def vmdlifting(image_file, vmd_file, center_enabled=False):
     initialized = False
     positions_list = []
     head_rotation_list = []
+    visibility_list = []
     frame_num = 0
     print("pose estimation start")
     while (cap.isOpened()):
@@ -61,7 +62,11 @@ def vmdlifting(image_file, vmd_file, center_enabled=False):
             initialized = True
             
         # pose estimation
-        pose_2d, visibility, pose_3d = pose_estimator.estimate(image)
+        try:
+            pose_2d, visibility, pose_3d = pose_estimator.estimate(image)
+        except Exception as ex:
+            frame_num +=1
+            continue
 
         if pose_2d is None or visibility is None or pose_3d is None:
             frame_num += 1
@@ -73,6 +78,7 @@ def vmdlifting(image_file, vmd_file, center_enabled=False):
         adjust_center(pose_2d, positions, image)
         #print(positions)
         positions_list.append(positions)
+        visibility_list.append(visibility[0])
         # head estimation
         #head_rotation = head_estimation(image)
         #head_rotation_list.append(head_rotation)
@@ -86,11 +92,11 @@ def vmdlifting(image_file, vmd_file, center_enabled=False):
     
     bone_frames = []
     frame_num = 0
-    for positions in positions_list:
+    for positions, visibility in zip(positions_list, visibility_list):
         if positions is None:
             frame_num += 1
             continue
-        bf = positions_to_frames(positions, frame_num, center_enabled)
+        bf = positions_to_frames(positions, visibility, frame_num, center_enabled)
         bone_frames.extend(bf)
         frame_num += 1
 

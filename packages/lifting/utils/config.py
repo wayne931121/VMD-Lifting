@@ -22,7 +22,8 @@ __all__ = [
 ]
 
 # threshold
-VISIBLE_PART = 1e-3
+# VISIBLE_PART = 1e-3
+VISIBLE_PART = 1e-2
 MIN_NUM_JOINTS = 5
 CENTER_TR = 0.4
 
