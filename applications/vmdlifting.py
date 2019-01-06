@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 # vmdlifting.py - estimate 3D pose by "Lifting-from-the-Deep", and convert the pose data to VMD

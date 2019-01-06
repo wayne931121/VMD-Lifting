@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 # dump_positions.py - dump 2D & 3D joint positions estimated by Lifting from the Deep

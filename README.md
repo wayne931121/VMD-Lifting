@@ -19,8 +19,48 @@ you to use this model file in a commercial product.
 ポーズ推定には Lifting from the Deep (https://github.com/DenisTome/Lifting-from-the-Deep-release)
 のプログラムを使用しています。
 
-## 必要なもの
-- python (3.x or 2.7)
+## お試し
+
+とりあえず使ってみたい方のために [Docker image](https://hub.docker.com/r/errnommd/vmd-lifting) を用意しました。
+[Docker](https://www.docker.com/) がインストールされたPCで、例えば C:\test_photo に写真ファイルを置き、
+Windows Powershell で次のコマンドを実行します。
+写真は全身が写ったものを選んでください。ファイル名は例えば test1.jpg とします。
+
+```
+docker run -v c:\test_photo:/vmdl/test -it errnommd/vmd-lifting:latest
+```
+
+コンテナとファイルを共有するため、認証のダイアログが出ます。
+ファイアウォールを通す設定が必要なこともあります。
+なお、Docker imageが約2GBあるので、ダウンロードに時間がかかります。
+"root@(文字列):/#" のように書かれたコマンドプロンプトが出たら準備完了です。
+下記の手順で VMD-Lifting を実行します(先頭の#は入力しない)。
+
+```
+# cd /vmdl/applications
+# python3 vmdlifting.py ../test/test1.jpg ../test/test1.vmd
+```
+
+次のようなメッセージが表示され、C:\test_photo に test1.vmd が作られます。
+この VMD ファイルを MMD に読ませましょう。
+
+```
+pose estimation start
+...
+(略)
+...
+frame_num:  0
+root@.......:/vmdl/applications#
+
+```
+
+終了するときは exit と入力します。
+
+以上のように Docker で使い続けることもできますが、Docker版はGPUを使わない設定になっているので遅いです。
+本格的に使用したい場合は、下記の手順でインストールを行い、GPUを有効にして使うことをお勧めします。
+
+## インストールに必要なもの
+- python (3.x)
 - [Tensorflow](https://www.tensorflow.org/)
 - [OpenCV](http://opencv.org/)
 - python-tk (Tkinter)
@@ -30,13 +70,13 @@ you to use this model file in a commercial product.
 Ubuntu や Debian GNU/Linux の環境では、rootになって下記のコマンドを実行すると必要なものが揃います。
 
 ```
-# apt-get install python-pip
-# pip install tensorflow-gpu
-# apt-get install python-opencv
-# apt-get install python-tk
-# apt-get install python-pyqt5
+# apt-get install python3-pip
+# pip3 install tensorflow-gpu
+# apt-get install python3-opencv
+# apt-get install python3-tk
+# apt-get install python3-pyqt5
 # apt-get install cmake
-# pip install dlib
+# pip3 install dlib
 ```
 
 Windowsの場合は次の手順で必要なものをインストールします。
