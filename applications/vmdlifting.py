@@ -21,7 +21,6 @@ import cv2
 import matplotlib.pyplot as plt
 from os.path import dirname, realpath
 from pos2vmd import positions_to_frames, make_showik_frames, convert_position
-from head_face import head_estimation
 from VmdWriter import VmdWriter
 from refine_position import refine_position
 from adjust_center import adjust_center
@@ -79,9 +78,6 @@ def vmdlifting(image_file, vmd_file, center_enabled=False):
         #print(positions)
         positions_list.append(positions)
         visibility_list.append(visibility[0])
-        # head estimation
-        #head_rotation = head_estimation(image)
-        #head_rotation_list.append(head_rotation)
         print("frame_num: ", frame_num)
         frame_num += 1
         

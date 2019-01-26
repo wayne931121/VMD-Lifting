@@ -1,4 +1,4 @@
 tensorflow-gpu
 opencv-python
 PyQt5
-dlib
+scikit-image

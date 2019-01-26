@@ -8,11 +8,6 @@ for more information about the original 'Lifting from the Deep'.
 This project is licensed under the terms of the GNU GPLv3 license. By using the software,
 you are agreeing to the terms of the license agreement (see LICENSE file).
 
-Note: 'shape_predictor_68_face_landmarks.dat', the default trained model for head pose estimation,
-was trained on the iBUG 300-W face landmark dataset. And the license for the iBUG 300-W dataset
-excludes commercial use. So you should contact Imperial College London to find out if it's OK for
-you to use this model file in a commercial product.
-
 ## 概要
 
 写真から人のポーズを推定し、VMDフォーマットのモーション(ポーズ)データを出力するプログラムです。
@@ -65,7 +60,6 @@ root@.......:/vmdl/applications#
 - [OpenCV](http://opencv.org/)
 - python-tk (Tkinter)
 - PyQt5
-- dlib
 
 ## Linuxでのパッケージインストール手順
 
@@ -78,7 +72,6 @@ Ubuntu や Debian GNU/Linux の環境では、rootになって下記のコマン
 # apt-get install python3-tk
 # apt-get install python3-pyqt5
 # apt-get install cmake
-# pip3 install dlib
 ```
 
 古いLinuxでは apt-get install python3-opencv が失敗することがあります。その場合、代わりに下記を実行します。
@@ -109,26 +102,11 @@ Windowsの場合は次の手順で必要なものをインストールします�
 
 `$ pip install PyQt5`
 
-- dlibをインストール
-
-`$ pip install dlib`
-
 ## VMD-Liftingのセットアップ
 
 - VMD-Liftingのアーカイブを展開して(あるいはgit cloneして)できたディレクトリに入り、setup.sh を実行します。
 このスクリプトは必要なデータを取得し、外部ユーティリティをインストールします。
 - (次に、Lifting from the Deep 本体の動作を確認したい場合は、application ディレクトリで demo.py を実行します。)
-
-- dlib + OpenCVによるHead Pose Estimation(頭部姿勢推定)を行う場合は、
-http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2 をダウンロードし、
-展開してできたファイル shape_predictor_68_face_landmarks.dat を applications/predictor/ に置きます。
-
-```
-$ mkdir applications/predictor
-$ cd applications/predictor
-$ wget http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2
-$ bunzip2 shape_predictor_68_face_landmarks.dat.bz2
-```
 
 ## 使用方法
 
@@ -165,9 +143,6 @@ Lifting from the Deep は、畳み込みニューラルネットワーク(CNN)�
 
 ## ライセンスについて
 (はじめに英語で書いたとおり)GNU GPLv3 licenseです。詳しくはLICENSEファイルを読んでください。
-なお、顔の向きを推定するのに使う学習済みモデル shape_predictor_68_face_landmarks.dat は、
-学習に用いられた iBUG 300-W データセットが商用利用を許可されていません。
-もし商用利用する場合は Imperial College London に許諾を得るか、別の学習済みモデルを用意してください。
 
 ## 参考文献
 
