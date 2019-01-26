@@ -59,13 +59,15 @@ root@.......:/vmdl/applications#
 以上のように Docker で使い続けることもできますが、Docker版はGPUを使わない設定になっているので遅いです。
 本格的に使用したい場合は、下記の手順でインストールを行い、GPUを有効にして使うことをお勧めします。
 
-## インストールに必要なもの
+## VMD-Liftingの実行に必要なパッケージ
 - python (3.x)
 - [Tensorflow](https://www.tensorflow.org/)
 - [OpenCV](http://opencv.org/)
 - python-tk (Tkinter)
 - PyQt5
 - dlib
+
+## Linuxでのパッケージインストール手順
 
 Ubuntu や Debian GNU/Linux の環境では、rootになって下記のコマンドを実行すると必要なものが揃います。
 
@@ -78,6 +80,14 @@ Ubuntu や Debian GNU/Linux の環境では、rootになって下記のコマン
 # apt-get install cmake
 # pip3 install dlib
 ```
+
+古いLinuxでは apt-get install python3-opencv が失敗することがあります。その場合、代わりに下記を実行します。
+
+```
+# pip3 install opencv-python
+```
+
+## Windowsでのパッケージインストール手順
 
 Windowsの場合は次の手順で必要なものをインストールします。
 
@@ -103,8 +113,10 @@ Windowsの場合は次の手順で必要なものをインストールします�
 
 `$ pip install dlib`
 
-## 準備
-- まず setup.sh を実行します。このスクリプトは必要なデータを取得し、外部ユーティリティをインストールします。
+## VMD-Liftingのセットアップ
+
+- VMD-Liftingのアーカイブを展開して(あるいはgit cloneして)できたディレクトリに入り、setup.sh を実行します。
+このスクリプトは必要なデータを取得し、外部ユーティリティをインストールします。
 - (次に、Lifting from the Deep 本体の動作を確認したい場合は、application ディレクトリで demo.py を実行します。)
 
 - dlib + OpenCVによるHead Pose Estimation(頭部姿勢推定)を行う場合は、
@@ -120,17 +132,28 @@ $ bunzip2 shape_predictor_68_face_landmarks.dat.bz2
 
 ## 使用方法
 
-cd application
-
-./vmdlifting.py IMAGE_FILE VMD_FILE [POSITION_FILE]
-
-- IMAGE_FILE: 入力元画像/動画ファイル(JPEG, PNG, MP4など)
-- VMD_FILE: 出力先VMDファイル
-- POSITION_FILE(オプション): 関節の位置を出力するテキストファイル。デバッグ用。
+application ディレクトリに入って vmdlifting.py を実行します。
+コマンドライン引数として入力元画像/動画ファイル名と出力先VMDファイル名を指定します。
 
 使用例:
 
-./vmdlifting.py photo.jpg estimated.vmd
+```
+./vmdlifting.py ../data/images/photo.jpg estimated.vmd
+```
+```
+./vmdlifting.py movie.mp4 motion.vmd
+```
+
+コマンドライン引数とオプション:
+
+```
+usage: vmdlifting.py [-h] [--center] IMAGE_FILE VMD_FILE
+```
+
+- IMAGE_FILE: 入力元画像/動画ファイル名(JPEG, PNG, MP4など)
+- VMD_FILE: 出力先VMDファイル名
+- -h オプションでヘルプメッセージが表示されます
+- --center オプションを付けると、出力されるVMDファイルにセンターボーンの位置が追加されます。(現状まだ不安定です)
 
 ## Lifting from the Deep について
 
