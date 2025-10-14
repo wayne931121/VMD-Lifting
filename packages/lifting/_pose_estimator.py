@@ -7,7 +7,21 @@ Created on Jul 13 16:20 2017
 from . import utils
 import cv2
 import numpy as np
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+
+tf.compat.v1.disable_eager_execution()
+
+gpus = tf.config.experimental.list_physical_devices('GPU')
+if gpus:
+    # Restrict TensorFlow to only allocate 1GB of memory on the first GPU
+    try:
+        tf.config.experimental.set_virtual_device_configuration(gpus[0],
+       [tf.config.experimental.VirtualDeviceConfiguration(memory_limit=1024*5)])
+        logical_gpus = tf.config.experimental.list_logical_devices('GPU')
+        print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPUs")
+    except RuntimeError as e:
+        # Virtual devices must be set before GPUs have been initialized
+        print(e)
 
 import abc
 ABC = abc.ABCMeta('ABC', (object,), {})
@@ -85,8 +99,9 @@ class PoseEstimator(PoseEstimatorInterface):
             self.pred_2d_pose, self.likelihoods = utils.inference_pose(
                 self.pose_image_in, self.pose_centermap_in,
                 utils.config.INPUT_SIZE)
-
-        sess = tf.Session()
+        config = tf.ConfigProto()
+        config.gpu_options.allow_growth = True
+        sess = tf.Session(config=config)
         sess.run(tf.global_variables_initializer())
         saver = tf.train.Saver()
         saver.restore(sess, self.session_path)
