@@ -35,6 +35,15 @@ https://github.com/wayne931121/VMD-Lifting/blob/master/env.yml
  - NVIDIA GeForce RTX 4050 (6GB, installed driver)
 
 # Example
+simple test:
+```cmd
+python vmdlifting.py your_test.jpg test_output.vmd
+```
+convert video to vmd file:
+```cmd
+python vmdlifting.py 3.mp4 3.vmd
+```
+Example:
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/3f46123b-acea-423b-ad5c-208d4a42571c" />
 
 # Result
