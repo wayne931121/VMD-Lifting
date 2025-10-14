@@ -9,14 +9,14 @@ from __future__ import print_function
 
 import os
 
-os.environ["NUMPY_EXPERIMENTAL_DTYPE_API"] = "1"
+#os.environ["NUMPY_EXPERIMENTAL_DTYPE_API"] = "1"
 
-os.environ["PATH"] += r";C:\waifu2x-caffe"
-os.environ["PATH"] += r";C:\Program Files\Ultimate Vocal Remover\torch\lib"
+#os.environ["PATH"] += r";C:\waifu2x-caffe"
+#os.environ["PATH"] += r";C:\Program Files\Ultimate Vocal Remover\torch\lib"
 
 
-os.environ["TEMP"] = r"C:\ProgramData\TEST"
-os.environ["TMP"] = r"C:\ProgramData\TEST"
+#os.environ["TEMP"] = r"C:\ProgramData\TEST"
+#os.environ["TMP"] = r"C:\ProgramData\TEST"
 
 def usage(prog):
     print('usage: ' + prog + ' IMAGE_FILE VMD_FILE')
