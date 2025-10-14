@@ -10,6 +10,10 @@ forked from: https://github.com/errno-mmd/VMD-Lifting
 
 I install, debug, successful run these file in 3 hours. It is very good.
 
+# Download Model by Yourself
+
+https://github.com/wayne931121/VMD-Lifting/tree/master/data/saved_sessions
+
 # MY ENV
 
 https://github.com/wayne931121/VMD-Lifting/blob/master/env.yml
