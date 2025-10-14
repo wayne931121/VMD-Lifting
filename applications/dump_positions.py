@@ -25,7 +25,7 @@ joint = [(0, None, "腰"),
          (16, 4, "右手首")]
 
 def dump_positions(pose_2d, visibility, pose_3d):
-    print("ID, 説明, Visibility, X(2D), Y(2D), X(3D), Y(3D), Z(3D)")
+    # print("ID, 説明, Visibility, X(2D), Y(2D), X(3D), Y(3D), Z(3D)")
     for p2d, vis, p3d in zip(pose_2d, visibility, pose_3d):
         for i in range(len(joint)):
             idx_2d = joint[i][1]
@@ -41,4 +41,4 @@ def dump_positions(pose_2d, visibility, pose_3d):
             x3d = str(p3d[0, i])
             y3d = str(p3d[2, i])
             z3d = str(p3d[1, i])
-            print(",".join([str(i), desc, v, x2d, y2d, x3d, y3d, z3d]))
+            # print(",".join([str(i), desc, v, x2d, y2d, x3d, y3d, z3d]))

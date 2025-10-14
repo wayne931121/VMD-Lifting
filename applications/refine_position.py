@@ -85,7 +85,8 @@ def normalize_for_vmd(positions_list):
         center_offset += pos[7]
         spine_len = spine_len + (pos[8] - pos[7]).length()
         count += 1
-
+    #import cdebug
+    #cdebug.main(locals())
     center_offset /= count
     spine_len /= count
     scale = 3.2 / spine_len

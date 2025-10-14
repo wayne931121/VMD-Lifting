@@ -21,7 +21,7 @@ def adjust_center(positions_2d, positions_3d, image):
         p2dlist.append((p[k, 1], p[k, 0]))
 
     p2d = np.array(p2dlist, dtype="double")
-    print("p2d: ", p2d)
+    # print("p2d: ", p2d)
     
     p3dlist = []
     for k in idx_3d:
@@ -30,7 +30,7 @@ def adjust_center(positions_2d, positions_3d, image):
         p3dlist.append((p.x(), -p.y(), p.z()))
 
     p3d = np.array(p3dlist, dtype="double")
-    print("p3d: ", p3d)
+    # print("p3d: ", p3d)
     
     focal_length = max([image.shape[0], image.shape[1]])
     camera = np.array([[focal_length, 0, image.shape[1] / 2],
@@ -50,9 +50,9 @@ def adjust_center(positions_2d, positions_3d, image):
                          [rot_mat[1][0], rot_mat[1][1], rot_mat[1][2], 0],
                          [rot_mat[2][0], rot_mat[2][1], rot_mat[2][2], 0]], dtype="double")
     eulerAngles = cv2.decomposeProjectionMatrix(proj_mat)[6]
-    print("eulerAngles: \n", eulerAngles)
-    print("trans_vec: ", trans_vec)
-    print("center: ", center)
+    # print("eulerAngles: \n", eulerAngles)
+    # print("trans_vec: ", trans_vec)
+    # print("center: ", center)
     offset = center - positions_3d[center_idx] + camera_position
     for i in range(len(positions_3d)):
         positions_3d[i] += offset

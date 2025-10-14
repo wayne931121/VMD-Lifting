@@ -7,6 +7,17 @@
 
 from __future__ import print_function
 
+import os
+
+os.environ["NUMPY_EXPERIMENTAL_DTYPE_API"] = "1"
+
+os.environ["PATH"] += r";C:\waifu2x-caffe"
+os.environ["PATH"] += r";C:\Program Files\Ultimate Vocal Remover\torch\lib"
+
+
+os.environ["TEMP"] = r"C:\ProgramData\TEST"
+os.environ["TMP"] = r"C:\ProgramData\TEST"
+
 def usage(prog):
     print('usage: ' + prog + ' IMAGE_FILE VMD_FILE')
     sys.exit()
@@ -27,6 +38,7 @@ from adjust_center import adjust_center
 from dump_positions import dump_positions
 import argparse;
 
+
 DIR_PATH = dirname(realpath(__file__))
 PROJECT_PATH = realpath(DIR_PATH + '/..')
 SAVED_SESSIONS_DIR = PROJECT_PATH + '/data/saved_sessions'
@@ -42,7 +54,11 @@ def vmdlifting(image_file, vmd_file, center_enabled=False):
     visibility_list = []
     frame_num = 0
     print("pose estimation start")
+    f = int(cap.get(7))
+    e = 0
     while (cap.isOpened()):
+        print("\r",e,"/",f,end="")
+        e+=1
         ret, image = cap.read()
         if not ret:
             break
@@ -61,6 +77,11 @@ def vmdlifting(image_file, vmd_file, center_enabled=False):
             initialized = True
             
         # pose estimation
+        
+        #import cdebug
+        #print(21111111111111111)
+        #cdebug.main(locals())
+        
         try:
             pose_2d, visibility, pose_3d = pose_estimator.estimate(image)
         except Exception as ex:
@@ -70,21 +91,33 @@ def vmdlifting(image_file, vmd_file, center_enabled=False):
         if pose_2d is None or visibility is None or pose_3d is None:
             frame_num += 1
             continue
-    
+        
         dump_positions(pose_2d, visibility, pose_3d)
         positions = convert_position(pose_3d)
         #print(positions)
-        adjust_center(pose_2d, positions, image)
+        #cv2.error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\calib3d\src\calibration_base.cpp:1082: error: (-215:Assertion failed) fabs(M(2, 0)) < FLT_EPSILON in function 'cv::RQDecomp3x3'
+        #some times... idk why...
+        ff = 1
+        while ff:
+            try:
+                adjust_center(pose_2d, positions, image)
+                ff = 0
+            except:
+                pass
         #print(positions)
+        #import cdebug
+        #print(1111111111111111)
+        #cdebug.main(locals())
         positions_list.append(positions)
         visibility_list.append(visibility[0])
-        print("frame_num: ", frame_num)
+        #print("frame_num: ", frame_num)
         frame_num += 1
         
     # close model
+    #print(3333333333333333)
     pose_estimator.close()
 
-    refine_position(positions_list)
+    #refine_position(positions_list)
     
     bone_frames = []
     frame_num = 0
@@ -92,6 +125,8 @@ def vmdlifting(image_file, vmd_file, center_enabled=False):
         if positions is None:
             frame_num += 1
             continue
+        #import cdebug
+        #cdebug.main(locals())
         bf = positions_to_frames(positions, visibility, frame_num, center_enabled)
         bone_frames.extend(bf)
         frame_num += 1
