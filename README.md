@@ -39,9 +39,17 @@ https://github.com/wayne931121/VMD-Lifting/blob/master/env.yml
 
 If you use cpu, that's good.
 
-If you use GPU, set the memoey limit here:
+If you use GPU, 
+
+- set the memoey limit here:
 
 https://github.com/wayne931121/VMD-Lifting/blob/master/packages/lifting/_pose_estimator.py#L19
+
+- check your tmp folder is all in ansi code (or tensorflow may give you a error)
+
+if not, set here:
+
+https://github.com/wayne931121/VMD-Lifting/blob/master/applications/vmdlifting.py#L19
 
 # Reference
 https://www.tensorflow.org/guide/migrate#a_note_on_slim_contriblayers
