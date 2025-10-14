@@ -18,6 +18,8 @@ import os
 #os.environ["TEMP"] = r"C:\ProgramData\TEST"
 #os.environ["TMP"] = r"C:\ProgramData\TEST"
 
+#Notice os.environ["TMP"] only can use ansi code.
+
 def usage(prog):
     print('usage: ' + prog + ' IMAGE_FILE VMD_FILE')
     sys.exit()
