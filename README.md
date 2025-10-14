@@ -8,6 +8,8 @@ forked from: https://github.com/errno-mmd/VMD-Lifting
 
 # Intro
 
+Convert video to vmd file.
+
 I installed, debug, successful run these files in only 3 hours. It is very good.
 
 # Download Model by Yourself
