@@ -9,7 +9,7 @@ from __future__ import print_function
 
 import os
 
-#os.environ["NUMPY_EXPERIMENTAL_DTYPE_API"] = "1"
+os.environ["NUMPY_EXPERIMENTAL_DTYPE_API"] = "1"
 
 #os.environ["PATH"] += r";C:\waifu2x-caffe"
 #os.environ["PATH"] += r";C:\Program Files\Ultimate Vocal Remover\torch\lib"
@@ -18,7 +18,7 @@ import os
 #os.environ["TEMP"] = r"C:\ProgramData\TEST"
 #os.environ["TMP"] = r"C:\ProgramData\TEST"
 
-#Notice os.environ["TMP"] only can use ansi code.
+#Notice os.environ["TMP"] only can use ansi code, so I set to other folder not the default folder in my computer.
 
 def usage(prog):
     print('usage: ' + prog + ' IMAGE_FILE VMD_FILE')
