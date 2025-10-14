@@ -51,7 +51,7 @@ If not, set here:
 
 https://github.com/wayne931121/VMD-Lifting/blob/master/applications/vmdlifting.py#L19
 
-## I turned off smooth vmd function
+## I turned off the smooth vmd function
 
 See: https://github.com/wayne931121/VMD-Lifting/blob/master/applications/readme.md
 
