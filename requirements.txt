@@ -1,4 +1,6 @@
-tensorflow
+# Please read https://github.com/wayne931121/VMD-Lifting/blob/master/env.yml instead use this file.
+
+tensorflow==2.10.0
 opencv-python
 PyQt5
 scikit-image
