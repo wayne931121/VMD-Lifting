@@ -13,7 +13,7 @@ tf.compat.v1.disable_eager_execution()
 
 gpus = tf.config.experimental.list_physical_devices('GPU')
 if gpus:
-    # Restrict TensorFlow to only allocate 1GB of memory on the first GPU
+    # Restrict TensorFlow to only allocate ?GB of memory on the first GPU
     try:
         tf.config.experimental.set_virtual_device_configuration(gpus[0],
        [tf.config.experimental.VirtualDeviceConfiguration(memory_limit=1024*5)])
