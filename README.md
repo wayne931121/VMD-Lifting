@@ -41,11 +41,11 @@ https://github.com/wayne931121/VMD-Lifting/blob/master/env.yml
 
 ## If you use GPU, 
 
-### set the memoey limit here:
+### 1. set the memoey limit here:
 
 https://github.com/wayne931121/VMD-Lifting/blob/master/packages/lifting/_pose_estimator.py#L19
 
-### check your tmp folder is all in ansi code (or tensorflow may give you a error)
+### 2. check your tmp folder is all in ansi code (or tensorflow may give you a error)
 
 If not, set here:
 
