@@ -51,6 +51,10 @@ If not, set here:
 
 https://github.com/wayne931121/VMD-Lifting/blob/master/applications/vmdlifting.py#L19
 
+## I turned off smooth vmd function
+
+See: https://github.com/wayne931121/VMD-Lifting/blob/master/applications/readme.md
+
 # Reference
 https://www.tensorflow.org/guide/migrate#a_note_on_slim_contriblayers
 
