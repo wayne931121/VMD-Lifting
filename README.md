@@ -35,5 +35,17 @@ https://github.com/wayne931121/VMD-Lifting/blob/master/env.yml
 # Example
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/3f46123b-acea-423b-ad5c-208d4a42571c" />
 
-# Notice
+# Reference
 https://www.tensorflow.org/guide/migrate#a_note_on_slim_contriblayers
+
+https://stackoverflow.com/questions/56561734/runtimeerror-tf-placeholder-is-not-compatible-with-eager-execution
+
+https://stackoverflow.com/questions/10475198/retrieving-the-current-frame-number-in-opencv
+
+https://stackoverflow.com/questions/2435062/what-happened-to-the-tmp-environment-variable
+
+https://stackoverflow.com/questions/36927607/how-can-i-solve-ran-out-of-gpu-memory-in-tensorflow
+
+# Notice
+
+https://stackoverflow.com/questions/78266102/opencv-throws-error-215assertion-failed/79790464#79790464
