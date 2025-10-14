@@ -35,6 +35,14 @@ https://github.com/wayne931121/VMD-Lifting/blob/master/env.yml
 # Example
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/3f46123b-acea-423b-ad5c-208d4a42571c" />
 
+# Notice
+
+If you use cpu, that's good.
+
+If you use GPU, set the memoey limit here:
+
+https://github.com/wayne931121/VMD-Lifting/blob/master/packages/lifting/_pose_estimator.py#L19
+
 # Reference
 https://www.tensorflow.org/guide/migrate#a_note_on_slim_contriblayers
 
