@@ -8,7 +8,7 @@ forked from: https://github.com/errno-mmd/VMD-Lifting
 
 # Intro
 
-I install, debug, successful run these file in 3 hours. It is very good.
+I install, debug, successful run these files in 3 hours. It is very good.
 
 # Download Model by Yourself
 
