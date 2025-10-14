@@ -105,7 +105,7 @@ class Prob3dPose:
         # the joints with weight set to 0 should not be considered in the
         # normalisation process
         d2 = d2.reshape(d2.shape[0], -1, 2).transpose(0, 2, 1)
-        idx_consider = weights[0, 0].astype(np.bool)
+        idx_consider = weights[0, 0].astype(bool)
         if np.sum(weights[:, 0].sum(1) >= config.MIN_NUM_JOINTS) == 0:
             raise Exception(
                 'Not enough 2D joints identified to generate 3D pose')
