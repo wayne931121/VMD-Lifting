@@ -34,3 +34,6 @@ https://github.com/wayne931121/VMD-Lifting/blob/master/env.yml
 
 # Example
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/3f46123b-acea-423b-ad5c-208d4a42571c" />
+
+# Notice
+https://www.tensorflow.org/guide/migrate#a_note_on_slim_contriblayers
