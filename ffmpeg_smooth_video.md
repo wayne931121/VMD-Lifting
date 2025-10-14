@@ -1,4 +1,6 @@
 ```cmd
+rem images created by blender, blender mmd tools, mmd file, vmd file.
+
 rem create video
 ffmpeg -start_number 50001 -framerate 30 -i %5d.png -crf 1 -pix_fmt yuva420p o.mp4
 
