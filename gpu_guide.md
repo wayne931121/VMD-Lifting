@@ -79,3 +79,8 @@ Wed Oct 15 12:15:11 2025
 Set path in:
 
 https://github.com/wayne931121/VMD-Lifting/blob/master/applications/vmdlifting.py#L39
+
+
+Read the notice:
+
+https://github.com/wayne931121/VMD-Lifting/tree/master?tab=readme-ov-file#if-you-use-gpu
