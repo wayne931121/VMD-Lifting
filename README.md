@@ -10,7 +10,7 @@ forked from: https://github.com/errno-mmd/VMD-Lifting
 
 ### 1. [Intro](#intro)
 ### 2. [Download Model by Yourself](#download-model-by-yourself)
-### 3.[MY ENV](#my-env)
+### 3. [MY ENV](#my-env)
 ### 4. [MY DEVICE INFO](#my-device-info)
 ### 5. [Example](#example)
 ### 6. [Result](#result)
