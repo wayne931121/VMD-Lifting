@@ -2,8 +2,8 @@ Notice: because output position is all NaN in my test video, so I closed smooth 
 
 SEE: 
 
-```
-#refine_position(positions_list)
+```py
+refine_position(positions_list)
 ``` 
 
 in https://github.com/wayne931121/VMD-Lifting/blob/master/applications/vmdlifting.py
