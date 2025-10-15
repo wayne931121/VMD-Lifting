@@ -35,6 +35,9 @@ https://github.com/wayne931121/VMD-Lifting/blob/master/env.yml
  - NVIDIA GeForce RTX 4050 (6GB, installed driver)
 
 # Example
+```cmd
+cd applications
+```
 simple test:
 ```cmd
 python vmdlifting.py your_test.jpg test_output.vmd
