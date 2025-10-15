@@ -68,13 +68,13 @@ https://github.com/user-attachments/assets/3a67b894-773c-46d0-8b00-02aee696c856
 
 ### 1. set the memoey limit here:
 
-https://github.com/wayne931121/VMD-Lifting/blob/master/packages/lifting/_pose_estimator.py#L43
+https://github.com/wayne931121/VMD-Lifting/blob/master/packages/lifting/_pose_estimator.py#L19
 
 ### 2. check your tmp folder is all in ansi encode (all in english) (or tensorflow may give you a error)
 
 If not, set here:
 
-https://github.com/wayne931121/VMD-Lifting/blob/master/applications/vmdlifting.py#L19
+https://github.com/wayne931121/VMD-Lifting/blob/master/applications/vmdlifting.py#L43
 
 ## I turned off the smooth vmd function
 
