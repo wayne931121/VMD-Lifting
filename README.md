@@ -93,7 +93,9 @@ https://stackoverflow.com/questions/78266102/opencv-throws-error-215assertion-fa
 
 # Citation
 
-the text copied from https://github.com/DenisTome/Lifting-from-the-Deep-release/blob/master/README.md
+the text copied from 
+
+https://github.com/DenisTome/Lifting-from-the-Deep-release/blob/master/README.md#citation
 
 	@InProceedings{Tome_2017_CVPR,
 	author = {Tome, Denis and Russell, Chris and Agapito, Lourdes},
