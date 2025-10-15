@@ -143,7 +143,7 @@ https://github.com/DenisTome/Lifting-from-the-Deep-release/blob/master/README.md
 
 # Contributors 💖✨💗
 
-Original code by Denis Tome, Chris Russell, Lourdes Agapito, 2018
+Original code by Denis Tome, Chris Russell, Lourdes Agapito, 2017
 
 - Profile: https://github.com/DenisTome
 - Contributors: https://github.com/DenisTome/Lifting-from-the-Deep-release/graphs/contributors
