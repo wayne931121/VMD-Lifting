@@ -80,13 +80,13 @@ If not, set here:
 
 https://github.com/wayne931121/VMD-Lifting/blob/master/applications/vmdlifting.py#L43
 
+### 3. If you meet the bug about nvvm
+
+https://stackoverflow.com/questions/72499414/i-got-an-error-about-error-cant-find-libdevice-directory-cuda-dir-nvvm-libd
+
 ## I turned off the smooth vmd function
 
 See: https://github.com/wayne931121/VMD-Lifting/blob/master/applications/readme.md
-
-# If you meet the bug about nvvm
-
-https://stackoverflow.com/questions/72499414/i-got-an-error-about-error-cant-find-libdevice-directory-cuda-dir-nvvm-libd
 
 # Reference
 https://www.tensorflow.org/guide/migrate#a_note_on_slim_contriblayers
