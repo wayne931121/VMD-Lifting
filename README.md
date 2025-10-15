@@ -60,6 +60,10 @@ ffmpeg command: https://github.com/wayne931121/VMD-Lifting/blob/master/ffmpeg_sm
 
 https://github.com/user-attachments/assets/3a67b894-773c-46d0-8b00-02aee696c856
 
+# GPU GUIDE
+
+https://github.com/wayne931121/VMD-Lifting/blob/master/gpu_guide.md
+
 # Notice
 
 ## If you use cpu, that's good.
