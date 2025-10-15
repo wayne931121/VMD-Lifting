@@ -39,6 +39,9 @@ simple test:
 ```cmd
 python vmdlifting.py your_test.jpg test_output.vmd
 ```
+```cmd
+python vmdlifting.py ..\data\images\test_image.png test_if_there_is_a_bug.vmd
+```
 convert video to vmd file:
 ```cmd
 python vmdlifting.py 3.mp4 3.vmd
