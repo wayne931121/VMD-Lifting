@@ -1,0 +1,198 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+#
+# vmdlifting.py - estimate 3D pose by "Lifting-from-the-Deep", and convert the pose data to VMD
+#
+# This program is derived from demo.py in Lifting-from-the-Deep which is created by Denis Tome'
+
+from __future__ import print_function
+
+import os
+
+os.environ["NUMPY_EXPERIMENTAL_DTYPE_API"] = "1"
+
+#os.environ["PATH"] += r";C:\waifu2x-caffe"
+#os.environ["PATH"] += r";C:\Program Files\Ultimate Vocal Remover\torch\lib"
+"""
+(if you use cpu, no need to see here.)
+debug:
+2025-10-15 11:46:34.494588: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1616] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 5120 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 4050 Laptop GPU, pci bus id: 0000:01:00.0, compute capability: 8.9
+2025-10-15 11:46:34.508761: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:354] MLIR V1 optimization pass is not enabled
+2025-10-15 11:46:35.374835: I tensorflow/stream_executor/cuda/cuda_dnn.cc:384] Loaded cuDNN version 8907
+2025-10-15 11:46:35.467239: W tensorflow/stream_executor/gpu/asm_compiler.cc:111] *** WARNING *** You are using ptxas 11.0.167, which is older than 11.1. ptxas before 11.1 is known to miscompile XLA code, leading to incorrect results or invalid-address errors.
+
+You may not need to update to CUDA 11.1; cherry-picking the ptxas binary is often sufficient.
+2025-10-15 11:46:35.496206: W tensorflow/stream_executor/gpu/redzone_allocator.cc:314] INTERNAL: ptxas exited with non-zero error code -1, output:
+Relying on driver to perform ptx compilation.
+Modify $PATH to customize ptxas location.
+This message will be only logged once.
+2025-10-15 11:46:36.044988: E tensorflow/stream_executor/cuda/cuda_blas.cc:218] failed to create cublas handle: cublas error
+2025-10-15 11:46:36.247123: E tensorflow/stream_executor/cuda/cuda_blas.cc:218] failed to create cublas handle: cublas error
+2025-10-15 11:46:36.383745: E tensorflow/stream_executor/cuda/cuda_blas.cc:218] failed to create cublas handle: cublas error
+2025-10-15 11:46:36.622170: E tensorflow/stream_executor/cuda/cuda_blas.cc:218] failed to create cublas handle: cublas error
+2025-10-15 11:46:36.745375: E tensorflow/stream_executor/cuda/cuda_blas.cc:218] failed to create cublas handle: cublas error
+2025-10-15 11:46:36.892642: E tensorflow/stream_executor/cuda/cuda_blas.cc:218] failed to create cublas handle: cublas error
+2025-10-15 11:46:36.980500: E tensorflow/stream_executor/cuda/cuda_blas.cc:218] failed to create cublas handle: cublas error
+"""
+#set this because there is many cuda versions in my device!!!
+os.environ["PATH"] = os.environ["PATH"].replace(r"Toolkit\CUDA","icannotfindorruntodisable")
+os.environ["PATH"] += r";C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2\bin"
+os.environ["PATH"] += r";C:\Users\原神\Downloads\cudnn-windows-x86_64-8.9.7.29_cuda11-archive\cudnn-windows-x86_64-8.9.7.29_cuda11-archive\bin"
+
+os.environ["TEMP"] = r"C:\ProgramData\TEST"
+os.environ["TMP"] = r"C:\ProgramData\TEST"
+
+def usage(prog):
+    print('usage: ' + prog + ' IMAGE_FILE VMD_FILE')
+    sys.exit()
+
+import __init__
+
+from lifting import PoseEstimator
+from lifting.utils import draw_limbs
+from lifting.utils import plot_pose
+
+import cv2
+import matplotlib.pyplot as plt
+from os.path import dirname, realpath
+from pos2vmd import positions_to_frames, make_showik_frames, convert_position
+from VmdWriter import VmdWriter
+from refine_position import refine_position
+from adjust_center import adjust_center
+from dump_positions import dump_positions
+import argparse;
+
+
+DIR_PATH = dirname(realpath(__file__))
+PROJECT_PATH = realpath(DIR_PATH + '/..')
+SAVED_SESSIONS_DIR = PROJECT_PATH + '/data/saved_sessions'
+SESSION_PATH = SAVED_SESSIONS_DIR + '/init_session/init'
+PROB_MODEL_PATH = SAVED_SESSIONS_DIR + '/prob_model/prob_model_params.mat'
+
+def vmdlifting(image_file, vmd_file, center_enabled=False):
+    image_file_path = realpath(image_file)
+    cap = cv2.VideoCapture(image_file_path)
+    initialized = False
+    positions_list = []
+    head_rotation_list = []
+    visibility_list = []
+    frame_num = 0
+    print("pose estimation start")
+    f = int(cap.get(7))
+    e = 0
+    while (cap.isOpened()):
+        print("\r",e,"/",f,end="")
+        e+=1
+        ret, image = cap.read()
+        if not ret:
+            break
+        
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)  # conversion to rgb
+        #debug_img = "debug/" + str(frame_num) + ".png"
+        #cv2.imwrite(debug_img, image)
+
+        # create pose estimator
+        image_size = image.shape
+
+        if not initialized:
+            pose_estimator = PoseEstimator(image_size, SESSION_PATH, PROB_MODEL_PATH)
+            # load model
+            pose_estimator.initialise()
+            initialized = True
+            
+        # pose estimation
+        
+        #import cdebug
+        #print(21111111111111111)
+        #cdebug.main(locals())
+        
+        try:
+            pose_2d, visibility, pose_3d = pose_estimator.estimate(image)
+        except Exception as ex:
+            frame_num +=1
+            continue
+
+        if pose_2d is None or visibility is None or pose_3d is None:
+            frame_num += 1
+            continue
+        
+        dump_positions(pose_2d, visibility, pose_3d)
+        positions = convert_position(pose_3d)
+        #print(positions)
+        #cv2.error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\calib3d\src\calibration_base.cpp:1082: error: (-215:Assertion failed) fabs(M(2, 0)) < FLT_EPSILON in function 'cv::RQDecomp3x3'
+        #some times... idk why...
+        ff = 1
+        while ff:
+            try:
+                adjust_center(pose_2d, positions, image)
+                ff = 0
+            except:
+                pass
+        #print(positions)
+        #import cdebug
+        #print(1111111111111111)
+        #cdebug.main(locals())
+        positions_list.append(positions)
+        visibility_list.append(visibility[0])
+        #print("frame_num: ", frame_num)
+        frame_num += 1
+        
+    # close model
+    #print(3333333333333333)
+    pose_estimator.close()
+
+    #refine_position(positions_list)
+    
+    bone_frames = []
+    frame_num = 0
+    import pickle
+
+    with open('posfile', 'wb') as f:
+        pickle.dump([positions_list, visibility_list], f)
+    
+    
+    import sys
+    
+    sys.exit(0)
+    
+    import cdebug
+    cdebug.main(locals())
+    
+    for positions, visibility in zip(positions_list, visibility_list):
+        if positions is None:
+            frame_num += 1
+            continue
+        #import cdebug
+        #cdebug.main(locals())
+        bf = positions_to_frames(positions, visibility, frame_num, center_enabled)
+        bone_frames.extend(bf)
+        frame_num += 1
+
+    showik_frames = make_showik_frames()
+    writer = VmdWriter()
+    writer.write_vmd_file(vmd_file, bone_frames, showik_frames)
+    
+
+def display_results(in_image, data_2d, joint_visibility, data_3d):
+    """Plot 2D and 3D poses for each of the people in the image."""
+    plt.figure()
+    draw_limbs(in_image, data_2d, joint_visibility)
+    plt.imshow(in_image)
+    plt.axis('off')
+
+    # Show 3D poses
+    for single_3D in data_3d:
+        # or plot_pose(Prob3dPose.centre_all(single_3D))
+        plot_pose(single_3D)
+
+    plt.show()
+
+   
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='estimate 3D pose and generate VMD motion')
+    parser.add_argument('--center', action='store_true', help='move center bone (experimental)')
+    parser.add_argument('IMAGE_FILE')
+    #parser.add_argument('VMD_FILE')
+    
+    arg = parser.parse_args()
+    vmdlifting(arg.IMAGE_FILE, "", arg.center)
