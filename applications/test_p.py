@@ -169,5 +169,6 @@ for smoothlevels in range(-30,31,1):
     try:
         run(smoothlevels)
     except Exception as e:
-        print("\n","  ",smoothlevels, e)
+        print("\n","  Warn: ",smoothlevels, e)
+
     elog+=1
