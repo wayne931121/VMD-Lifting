@@ -19,6 +19,7 @@ forked from: https://github.com/errno-mmd/VMD-Lifting
 - [What's New](#whats-new)
 - [The Project is Suitable for](#the-project-is-suitable-for)
 - [Reference](#reference)
+- [License](#license)
 - [Citation](#citation)
 - [Contributors 💖✨💗](#contributors-)
 
@@ -142,6 +143,17 @@ https://stackoverflow.com/questions/2435062/what-happened-to-the-tmp-environment
 https://stackoverflow.com/questions/36927607/how-can-i-solve-ran-out-of-gpu-memory-in-tensorflow
 
 https://stackoverflow.com/questions/78266102/opencv-throws-error-215assertion-failed/79790464#79790464
+
+# License
+
+All source code in this project is licensed under the
+GPL v3.\
+See [LICENSE](./LICENSE) for more information.
+
+All documentation in this project is licensed under the
+CC-BY-NC 4.0.\
+See [LICENSE\_DOC](./LICENSE_DOC) for more information.
+
 
 # Citation
 
