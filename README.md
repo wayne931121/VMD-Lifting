@@ -8,19 +8,19 @@ forked from: https://github.com/errno-mmd/VMD-Lifting
 
 # Contents
 
-1. [Intro](#intro)
-2. [Download Model by Yourself](#download-model-by-yourself)
-3. [MY ENV](#my-env)
-4. [MY DEVICE INFO](#my-device-info)
-5. [Example](#example)
-6. [Result](result)
-7. [GPU GUIDE](gpu-guide)
-8. [Notice](#notice)
-9. [What's New](#whats-new)
-10. [The Project is Suitable for](#the-project-is-suitable-for)
-11. [Reference](#reference)
-12. [Citation](#citation)
-13. [Contributors 💖✨💗](#contributors-)
+### [Intro](#intro)
+### [Download Model by Yourself](#download-model-by-yourself)
+### [MY ENV](#my-env)
+### [MY DEVICE INFO](#my-device-info)
+### [Example](#example)
+### [Result](#result)
+### [GPU GUIDE](#gpu-guide)
+### [Notice](#notice)
+### [What's New](#whats-new)
+### [The Project is Suitable for](#the-project-is-suitable-for)
+### [Reference](#reference)
+### [Citation](#citation)
+### [Contributors 💖✨💗](#contributors-)
 
 # Intro
 
