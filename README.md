@@ -39,6 +39,7 @@ simple test:
 ```cmd
 python vmdlifting.py your_test.jpg test_output.vmd
 ```
+simple test with default image:
 ```cmd
 python vmdlifting.py ..\data\images\test_image.png test_if_there_is_a_bug.vmd
 ```
