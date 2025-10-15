@@ -90,3 +90,15 @@ https://stackoverflow.com/questions/36927607/how-can-i-solve-ran-out-of-gpu-memo
 # Also See
 
 https://stackoverflow.com/questions/78266102/opencv-throws-error-215assertion-failed/79790464#79790464
+
+# Citation
+
+the text copied from https://github.com/DenisTome/Lifting-from-the-Deep-release/blob/master/README.md
+
+	@InProceedings{Tome_2017_CVPR,
+	author = {Tome, Denis and Russell, Chris and Agapito, Lourdes},
+	title = {Lifting From the Deep: Convolutional 3D Pose Estimation From a Single Image},
+	booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+	month = {July},
+	year = {2017}
+	}
