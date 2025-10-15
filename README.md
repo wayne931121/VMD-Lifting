@@ -88,6 +88,26 @@ https://stackoverflow.com/questions/72499414/i-got-an-error-about-error-cant-fin
 
 See: https://github.com/wayne931121/VMD-Lifting/blob/master/applications/readme.md
 
+# What's New
+
+https://github.com/wayne931121/VMD-Lifting/tree/master/applications#whats-new
+
+# The Project is Suitable for
+
+1. I want to build vmd from video in free
+2. I know how to use python
+3. I know how to use conda
+4. I know how to use opencv (optional)
+5. I know how to use tensorflow (optional)
+
+## If you don't know anything about python and conda
+
+The quickmagic ai is more suitable for you (need money)
+
+https://www.quickmagic.ai/home
+
+or you can search ```blender motion ai``` in youtube.
+
 # Reference
 https://www.tensorflow.org/guide/migrate#a_note_on_slim_contriblayers
 
@@ -98,8 +118,6 @@ https://stackoverflow.com/questions/10475198/retrieving-the-current-frame-number
 https://stackoverflow.com/questions/2435062/what-happened-to-the-tmp-environment-variable
 
 https://stackoverflow.com/questions/36927607/how-can-i-solve-ran-out-of-gpu-memory-in-tensorflow
-
-# Also See
 
 https://stackoverflow.com/questions/78266102/opencv-throws-error-215assertion-failed/79790464#79790464
 
