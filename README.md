@@ -35,6 +35,7 @@ https://github.com/wayne931121/VMD-Lifting/blob/master/env.yml
  - NVIDIA GeForce RTX 4050 (6GB, installed driver)
 
 # Example
+first:
 ```cmd
 cd applications
 ```
