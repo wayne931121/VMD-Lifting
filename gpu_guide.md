@@ -20,7 +20,7 @@ https://developer.nvidia.com/cuda-11.2.2-download-archive?target_os=Windows&targ
 https://developer.nvidia.com/rdp/cudnn-archive
 
 My GPU Info
-```
+```cmd
 (C:\ai1) C:\TEST\VMD-Lifting-master\VMD-Lifting-master\applications>python vmdlifting.py "C:\TEST\testv\4.mp4" 4.vmd
 2025-10-15 11:56:30.282717: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX AVX2
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
