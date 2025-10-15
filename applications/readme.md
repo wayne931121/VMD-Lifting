@@ -14,3 +14,5 @@ in https://github.com/wayne931121/VMD-Lifting/blob/master/applications/vmdliftin
 
 1. ```python vmdlifting_p.py "C:\TEST\testv\4.mp4"```
 2. ```python test_p.py```
+
+### The more small smoothlevels is more smooth, the more big smoothlevels is more details.
