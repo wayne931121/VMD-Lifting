@@ -90,6 +90,8 @@ See: https://github.com/wayne931121/VMD-Lifting/blob/master/applications/readme.
 
 # What's New
 
+Smooth vmd with different smoothlevels
+
 https://github.com/wayne931121/VMD-Lifting/tree/master/applications#whats-new
 
 # The Project is Suitable for
