@@ -140,3 +140,21 @@ https://github.com/DenisTome/Lifting-from-the-Deep-release/blob/master/README.md
 	month = {July},
 	year = {2017}
 	}
+
+# Contributors
+
+Original code by (the author not specify names)
+
+- Profile: https://github.com/DenisTome
+- Contributors: https://github.com/DenisTome/Lifting-from-the-Deep-release/graphs/contributors
+- Source: https://github.com/DenisTome/Lifting-from-the-Deep-release
+
+Modifications and integration by Erano, 2018
+
+- Profile: https://github.com/errno-mmd
+- Source: https://github.com/errno-mmd/VMD-Lifting
+
+Modifications and integration by Wayne931121, 2025
+
+- Profile: https://github.com/wayne931121
+- Source: https://github.com/wayne931121/VMD-Lifting
