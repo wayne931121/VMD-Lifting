@@ -152,7 +152,7 @@ See [LICENSE](./LICENSE) for more information.
 
 All documentation in this project is licensed under the
 CC-BY-NC 4.0.\
-See [LICENSE\_DOC](./LICENSE_DOC) for more information.
+See [LICENSE-DOC](./LICENSE-DOC) for more information.
 
 
 # Citation
