@@ -146,6 +146,8 @@ https://stackoverflow.com/questions/36927607/how-can-i-solve-ran-out-of-gpu-memo
 https://stackoverflow.com/questions/78266102/opencv-throws-error-215assertion-failed/79790464#79790464
 
 # Also See
+## smoothvmd-colabv
+Make VMD motion smooth and slim in colab.
 
 https://github.com/wayne931121/smoothvmd-colab
 
