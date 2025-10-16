@@ -99,7 +99,7 @@ https://github.com/wayne931121/VMD-Lifting/blob/master/packages/lifting/_pose_es
 
 If not, set here:
 
-https://github.com/wayne931121/VMD-Lifting/blob/master/applications/vmdlifting.py#L43
+https://github.com/wayne931121/VMD-Lifting/blob/master/applications/environment.py
 
 ### 3. If you meet the bug about nvvm
 
