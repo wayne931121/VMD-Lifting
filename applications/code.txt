@@ -1,0 +1,2 @@
+python vmdlifting_p.py "C:\TEST\testv\4.mp4"
+python test_p.py
