@@ -16,3 +16,7 @@ in https://github.com/wayne931121/VMD-Lifting/blob/master/applications/vmdliftin
 2. ```python test_p.py```
 
 ### The more small smoothlevels is more smooth, the more big smoothlevels is more details.
+
+# Debug Test
+https://github.com/wayne931121/VMD-Lifting/blob/master/applications/debug_test.bat
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/54135310-102e-4118-8d45-c58bd4fa0ad0" />
