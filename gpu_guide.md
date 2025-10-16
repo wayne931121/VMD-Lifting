@@ -78,7 +78,7 @@ Wed Oct 15 12:15:11 2025
 
 Set path in:
 
-https://github.com/wayne931121/VMD-Lifting/blob/master/applications/vmdlifting.py#L39
+https://github.com/wayne931121/VMD-Lifting/blob/master/applications/environment.py
 
 
 Read the notice:
