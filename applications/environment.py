@@ -30,11 +30,12 @@ This message will be only logged once.
 2025-10-15 11:46:36.980500: E tensorflow/stream_executor/cuda/cuda_blas.cc:218] failed to create cublas handle: cublas error
 """
 #set this because there is many cuda versions in my device!!!
-os.environ["PATH"] = os.environ["PATH"].replace(r"Toolkit\CUDA","icannotfindorruntodisable")
-os.environ["PATH"] += r";C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2\bin"
-os.environ["PATH"] += r";C:\Users\原神\Downloads\cudnn-windows-x86_64-8.9.7.29_cuda11-archive\cudnn-windows-x86_64-8.9.7.29_cuda11-archive\bin"
+#os.environ["PATH"] = os.environ["PATH"].replace(r"Toolkit\CUDA","icannotfindorruntodisable")
+#os.environ["PATH"] += r";C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2\bin"
+#os.environ["PATH"] += r";C:\Users\原神\Downloads\cudnn-windows-x86_64-8.9.7.29_cuda11-archive\cudnn-windows-x86_64-8.9.7.29_cuda11-archive\bin"
 
-os.environ["TEMP"] = r"C:\ProgramData\TEST"
-os.environ["TMP"] = r"C:\ProgramData\TEST"
+#os.environ["TEMP"] = r"C:\ProgramData\TEST"
+#os.environ["TMP"] = r"C:\ProgramData\TEST"
+
 
 print("Environment Setup")
