@@ -17,11 +17,11 @@ in https://github.com/wayne931121/VMD-Lifting/blob/master/applications/vmdliftin
 
 ### The more small smoothlevels is more smooth, the more big smoothlevels is more details.
 
+### See the Example Output
+https://github.com/wayne931121/VMD-Lifting/tree/master/applications/example_output
+
 # Debug Test
 https://github.com/wayne931121/VMD-Lifting/blob/master/applications/debug_test.bat
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/54135310-102e-4118-8d45-c58bd4fa0ad0" />
 https://github.com/wayne931121/VMD-Lifting/blob/master/applications/debug_test_p.bat
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/20f3a13a-4c82-4b98-94fd-304608e1335e" />
-
-# See the Example Output
-https://github.com/wayne931121/VMD-Lifting/tree/master/applications/example_output
