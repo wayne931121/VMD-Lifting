@@ -95,8 +95,12 @@ def normalize_for_vmd(positions_list):
             p *= scale
 
 def refine_position(positions_list,smoothlevels):
-    smooth_position(positions_list,smoothlevels)
-    normalize_for_vmd(positions_list)
+    if smoothlevels!=-1 and smoothlevels!=-3: 
+        if smoothlevels==-2:
+            smoothlevels = 0
+        smooth_position(positions_list,smoothlevels)
+    if smoothlevels!=-2 and smoothlevels!=-3: 
+        normalize_for_vmd(positions_list)
 
 
 
@@ -128,12 +132,16 @@ def run(smoothlevels):
     writer = VmdWriter()
     writer.write_vmd_file(vmd_file+"smoothlevels"+str(smoothlevels)+".vmd", bone_frames, showik_frames)
 
-l = len(list(range(-30,31,1)))
+l = range(0,60,1)
+le = len(list(l))
 
 elog = 0
 
-for smoothlevels in range(-30,31,1):
-    print("\r",elog,"/",l,end="")
+run(-1)
+run(-2)
+run(-3)
+for smoothlevels in l:
+    print("\r",elog,"/",le,end="")
     try:
         run(smoothlevels)
     except Exception as e:
